@@ -4,8 +4,8 @@ This is a demo server used for testing the flutter-api interaction
 and provides a static overview the api.
 
 ```bash
-git clone <repo>
-cd <repo>
+git clone https://github.com/solvedbiscuit71/autondence-demo-server.git
+cd autondence-demo-server
 ```
 
 # Setup
@@ -58,7 +58,7 @@ curl --request POST \
   --form 'file=@<absolute-path-to-file>'
 ```
 
-Response
+Response (same as demo.json)
 ```json
 {
 	"message": "success",
@@ -67,8 +67,7 @@ Response
 			"roll_no": "…",
 			"name": "…",
 			"is_present": true
-		},
-        // and so on...
+		}
 	]
 }
 ```
