@@ -1,0 +1,22 @@
+[
+    {
+        "roll_no": "CH.EN.U4CSE22047",
+        "name": "Praveen Perumal",
+        "is_present": true
+    },
+    {
+        "roll_no": "CH.EN.U4CSE22051",
+        "name": "Swamynathan",
+        "is_present": false
+    },
+    {
+        "roll_no": "CH.EN.U4CSE22027",
+        "name": "Amudhan K",
+        "is_present": true
+    },
+    {
+        "roll_no": "CH.EN.U4CSE22053",
+        "name": "Sankara Narayanan",
+        "is_present": true
+    }
+]
