@@ -46,28 +46,4 @@ This starts the server at http://127.0.0.1:8000
 
 # API Reference
 
-## POST /upload
-
-This route expects the request body to be form data with `application/x-www-form-urlencoded`
-as its media type. This route expects one parameter which is a file (whose field name is also file)
-
-```bash
-curl --request POST \
-  --url http://127.0.0.1:8000/upload \
-  --header 'Content-Type: multipart/form-data' \
-  --form 'file=@<absolute-path-to-file>'
-```
-
-Response (same as demo.json)
-```json
-{
-	"message": "success",
-	"data": [
-		{
-			"roll_no": "…",
-			"name": "…",
-			"is_present": true
-		}
-	]
-}
-```
+Check out http://127.0.0.1:8000/doc
