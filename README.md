@@ -42,8 +42,4 @@ To start the server, run
 uvicorn main:app
 ```
 
-This starts the server at http://127.0.0.1:8000
-
-# API Reference
-
-Check out http://127.0.0.1:8000/doc
+This starts the server at http://127.0.0.1:8000. For API reference check out http://127.0.0.1:8000/docs and http://127.0.0.1:8000/redoc
