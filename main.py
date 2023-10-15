@@ -1,11 +1,8 @@
-import datetime
-import json
 import os
-from typing import Annotated
-
+import datetime
+from fastapi import FastAPI, UploadFile
 import aiofiles
-from fastapi import FastAPI, Form, File
-
+import json
 
 app = FastAPI()
 
@@ -17,21 +14,17 @@ async def process_image():
 
 
 @app.post("/upload")
-async def upload_file(filename: Annotated[str, Form()], filestream: Annotated[bytes, File()]):
+async def upload_file(file: UploadFile):
     os.makedirs("uploads", exist_ok=True)
 
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    name = f"{timestamp}_{filename}"
+    name = f"{timestamp}_{file.filename}"
     path = os.path.join("uploads", name)
 
     async with aiofiles.open(path, "wb") as f:
-        await f.write(filestream)
+        while chunk := await file.read(8192):
+            await f.write(chunk)
 
-    response = await process_image()  # dummy api call
+    data = await process_image()  # dummy api call
 
-    return {"message": "success", "body": response}
-
-
-@app.get("/")
-def root():
-    return {"message": "hello from fastapi"}
+    return {"message": "success", "data": data}
