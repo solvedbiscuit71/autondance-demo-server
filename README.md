@@ -4,8 +4,8 @@ This is a demo server used for testing the flutter-api interaction
 and provides a static overview the api.
 
 ```bash
-git clone https://github.com/solvedbiscuit71/autondence-demo-server.git
-cd autondence-demo-server
+git clone https://github.com/solvedbiscuit71/autondance-demo-server.git
+cd autondance-demo-server
 ```
 
 # Setup
