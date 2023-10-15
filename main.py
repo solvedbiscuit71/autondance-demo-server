@@ -1,8 +1,11 @@
-import os
 import datetime
-from fastapi import FastAPI, UploadFile, Response
-import aiofiles
 import json
+import os
+
+import aiofiles
+from fastapi import FastAPI, UploadFile, Response
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
 
@@ -51,10 +54,13 @@ def get_records(year: str, month: str, date: str, response: Response, time: str 
 
     if time in record[year][month][date]:
         response.status_code = 200
-        return {"message": "success", "data": record[year][month][date][time]}
+        return {"message": "success", **record[year][month][date][time]}
     return {"message": "time not found"}
 
 
 @app.get("/")
 def root():
     return data
+
+
+app.mount("/images", StaticFiles(directory="images"), name="images")
