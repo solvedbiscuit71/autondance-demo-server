@@ -1,0 +1,142 @@
+{
+    "2023": {
+        "October": {
+            "18": {
+                "03:20 PM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": false
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": false
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": false
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": true
+                    }
+                ],
+                "02:15 PM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": false
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": false
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": false
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": false
+                    }
+                ],
+                "10:20 AM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": true
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": true
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": false
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": true
+                    }
+                ]
+            },
+            "16": {
+                "12:50 PM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": true
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": true
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": true
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": true
+                    }
+                ],
+                "11:10 AM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": true
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": false
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": false
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": true
+                    }
+                ],
+                "09:15 AM": [
+                    {
+                        "id": 27,
+                        "name": "K Amudhan",
+                        "present": false
+                    },
+                    {
+                        "id": 47,
+                        "name": "Praveen Perumal",
+                        "present": true
+                    },
+                    {
+                        "id": 51,
+                        "name": "Swamynathan VP",
+                        "present": true
+                    },
+                    {
+                        "id": 53,
+                        "name": "Sankara Narayanna",
+                        "present": false
+                    }
+                ]
+            }
+        }
+    }
+}

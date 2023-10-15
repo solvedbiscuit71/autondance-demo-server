@@ -1,10 +1,13 @@
 import os
 import datetime
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, Response
 import aiofiles
 import json
 
 app = FastAPI()
+
+data = json.load(open(r"data/calendar.json", "r"))
+record = json.load(open(r"data/records.json", "r"))
 
 
 async def process_image():
@@ -28,3 +31,30 @@ async def upload_file(file: UploadFile):
     data = await process_image()  # dummy api call
 
     return {"message": "success", "data": data}
+
+
+@app.get("/records")
+def get_records(year: str, month: str, date: str, response: Response, time: str | None = None):
+    response.status_code = 404
+    if year not in record:
+        return {"message": "year not found"}
+
+    if month not in record[year]:
+        return {"message": "month not found"}
+
+    if date not in record[year][month]:
+        return {"message": "date not found"}
+
+    if time is None:
+        response.status_code = 200
+        return {"message": "success", "data": list(record[year][month][date].keys())}
+
+    if time in record[year][month][date]:
+        response.status_code = 200
+        return {"message": "success", "data": record[year][month][date][time]}
+    return {"message": "time not found"}
+
+
+@app.get("/")
+def root():
+    return data

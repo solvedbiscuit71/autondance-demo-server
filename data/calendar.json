@@ -1,0 +1,24 @@
+{
+    "message": "success",
+    "data": [
+        {
+            "year": 2023,
+            "months": [
+                {
+                    "month": "October",
+                    "startDay": "Sun",
+                    "endDay": "Tue",
+                    "noOfDays": 31,
+                    "availableDates": [16, 18]
+                },
+                {
+                    "month": "September",
+                    "startDay": "Fri",
+                    "endDay": "Sat",
+                    "noOfDays": 30,
+                    "availableDates": []
+                }
+            ]
+        }
+    ]
+}
