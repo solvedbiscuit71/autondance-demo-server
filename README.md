@@ -34,12 +34,19 @@ After activate your virtual environment, run
 pip install -r requirements.txt
 ```
 
+## Setup env variables
+
+Create a new file `.env` in the root of the project and add the host and port
+```
+API_HOST=<ip>
+API_PORT=<port-number>
+```
 
 ## Start the server
 
 To start the server, run
 ```bash
-uvicorn main:app
+python main.py
 ```
 
-This starts the server at http://127.0.0.1:8000. For API reference check out http://127.0.0.1:8000/docs and http://127.0.0.1:8000/redoc
+This starts the server at http://127.0.0.1:8000 (by default). For API reference check out http://127.0.0.1:8000/docs and http://127.0.0.1:8000/redoc
