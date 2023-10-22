@@ -70,6 +70,6 @@ app.mount("/images", StaticFiles(directory="images"), name="images")
 if __name__ == "__main__":
     dotenv.load_dotenv()
 
-    host = os.environ["API_HOST"]
-    port = int(os.environ["API_PORT"])
+    host = os.environ.get("API_HOST",  "127.0.0.1")
+    port = int(os.environ.get("API_PORT", 8000))
     uvicorn.run("main:app", host=host, port=port)
