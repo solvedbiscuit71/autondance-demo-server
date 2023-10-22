@@ -1,8 +1,10 @@
 import datetime
 import json
 import os
+import dotenv
 
 import aiofiles
+import uvicorn
 from fastapi import FastAPI, UploadFile, Response
 from fastapi.staticfiles import StaticFiles
 
@@ -64,3 +66,10 @@ def root():
 
 
 app.mount("/images", StaticFiles(directory="images"), name="images")
+
+if __name__ == "__main__":
+    dotenv.load_dotenv()
+
+    host = os.environ["API_HOST"]
+    port = int(os.environ["API_PORT"])
+    uvicorn.run("main:app", host=host, port=port)
