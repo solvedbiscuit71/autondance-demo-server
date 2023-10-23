@@ -5,41 +5,47 @@ import dotenv
 
 import aiofiles
 import uvicorn
-from fastapi import FastAPI, UploadFile, Response
+from fastapi import FastAPI, UploadFile, Depends
 from fastapi.staticfiles import StaticFiles
+from typing import Annotated
+
+from ultralytics import YOLO
 
 app = FastAPI()
 
-def fetch_image_name(year: int, month: str, day: int, time: str):
-    """
-    year: int
-    month: str
-    day: int [1-31]
-    time: str (format: '%H:%M %p')
-    """
+def get_model():
+    return YOLO("weights/facialv1.pt")
 
-    image_names = os.listdir('uploads')
+def get_annotation():
+    import json
+    return json.load(open("annotation.json"))
+
+def get_image_names():
+    return os.listdir('uploads')
+
+
+def fetch_image_name(
+        year: int,
+        month: str,
+        day: int,
+        time: str,
+    ):
+    image_names = get_image_names()
     month_names = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
     try:
         hour, minutes = map(int, time.split(' ')[0].split(':'))
-        loc = time.split(' ')[-1]
-
-        if loc == 'AM':
-            hour = hour if hour < 12 else 0
-        else:
-            hour = hour + 12 if hour < 12 else 12
+        hour = (hour if hour < 12 else 0) if time.split(' ')[-1] == "AM" else (hour + 12 if hour < 12 else 12)
         date = datetime.datetime(year, month_names.index(month) + 1, day, hour, minutes)
         name = date.strftime("%Y-%m-%d-%H-%M")
         image_name = list(filter(lambda n: n.split('.')[0] == name, image_names))[0]
         return image_name
-    except:  # If something goes wrong return None
+    except:
         return None
 
 
 @app.get("/")
-async def root():
-    image_names = os.listdir('uploads')
+async def root(image_name: Annotated[list[str], Depends(get_image_names)]):
     year_dict = {}
     calendar = []
 
@@ -60,7 +66,6 @@ async def root():
 
         for month, date_dict in month_dict.items():
             calendar[-1]["months"].append({"month": month, "dates": []})
-
             for date, times in date_dict.items():
                 calendar[-1]["months"][-1]["dates"].append({"date": date, "times": sorted(times, key=lambda time: time.split(' ')[::-1])})
 
@@ -68,12 +73,38 @@ async def root():
 
 
 @app.get("/attendance")
-def fetch_attendance(year: int, month: str, date: int, time: str):
+def fetch_attendance(
+        year: int,
+        month: str,
+        date: int,
+        time: str,
+        model: Annotated[YOLO, Depends(get_model, use_cache=True)],
+        annotates: Annotated[dict, Depends(get_annotation, use_cache=True)]
+    ):
     image_name = fetch_image_name(year, month, date, time)
+
     if image_name is None:
         return {"message": "not found"}
-    else:
-        return {"message": "success", "imageUri": f"/uploads/{image_name}"}
+
+    predicts = model(f"uploads/{image_name}", show=True)
+    xywh = predicts[0].boxes.xywh.numpy()
+
+    found = set()
+    total = set(annotates.keys())
+    for xy in xywh:
+        c = (xy[0], xy[1])
+        for id, box in annotates.items():
+            cuts = 0
+            if box[0][1] <= c[1] <= box[3][1]:
+                if c[0] <= min(box[0][0], box[3][0]):
+                    cuts += 1
+                if c[0] <= min(box[1][0], box[2][0]):
+                    cuts += 1
+            if cuts == 1:
+                found.add(id)
+                break
+
+    return {"message": "success", "present": found, "absent": total - found, "imageUri": f"/uploads/{image_name}"}
             
 
 @app.post("/upload")
