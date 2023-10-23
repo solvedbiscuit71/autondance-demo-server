@@ -10,28 +10,29 @@ cd autondance-demo-server
 
 # Setup
 
-Create a new python virtual environment and install the dependencies
-```bash
-python -m venv venv
+We are using poetry as the package manager and build tool install poetry
+
+Linux, macOS, Windows (WSL)
+```sh
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-To activate your virtual environment
-
-On windows
-```bash
-vevn\Scripts\activate
+Windows (Powershell)
+```sh
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
 
-On macOS and Linux
-```bash
-source venv/bin/activate
-```
+Don't forget to add poetry to your $PATH,
+
+
+`$HOME/.local/bin` on Unix.  
+`%APPDATA%\Python\Scripts` on Windows.
 
 ## Install the dependencies
 
-After activate your virtual environment, run
-```bash
-pip install -r requirements.txt
+To install dependency, inside the cloned directory run,
+```sh
+poetry install
 ```
 
 ## Setup env variables
@@ -46,7 +47,7 @@ API_PORT=<port-number>
 
 To start the server, run
 ```bash
-python main.py
+poetry run python main.py
 ```
 
 This starts the server at http://127.0.0.1:8000 (by default). For API reference check out http://127.0.0.1:8000/docs and http://127.0.0.1:8000/redoc
