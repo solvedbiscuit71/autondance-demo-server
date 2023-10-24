@@ -42,7 +42,7 @@ students = db.Table(
 images = db.Table(
     "image",
     meta,
-    db.Column("id", db.String(20), primary_key=True),
+    db.Column("id", db.String(24), primary_key=True),
     db.Column("width", db.Integer),
     db.Column("height", db.Integer),
     db.Column("classroom_id", db.String(10), db.ForeignKey("classroom.id")),
@@ -58,7 +58,7 @@ student_seat = db.Table(
 image_seat = db.Table(
     "image_seat",
     meta,
-    db.Column("image_id", db.String(20), db.ForeignKey("image.id")),
+    db.Column("image_id", db.String(24), db.ForeignKey("image.id")),
     db.Column("seat_id", db.String(6), db.ForeignKey("seat.id")),
     db.Column("present", db.Boolean, nullable=False)
 )

@@ -42,7 +42,6 @@ def get_connection():
 # For now, its fixed
 @functools.lru_cache()
 def get_annotation():
-    print("Called")
     conn = get_connection()
     query = db.text(
         "SELECT * FROM seat WHERE classroom_id=:id").bindparams(id=classroom)
