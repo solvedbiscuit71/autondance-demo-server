@@ -41,6 +41,14 @@ Create a new file `.env` in the root of the project and add the host and port
 ```
 API_HOST=<ip>
 API_PORT=<port-number>
+DATABASE_URL=mysql+mysqlconnector://<user>:<password>@<host>/<database>
+```
+
+## Setup database
+
+In this project, There is a predefined dataset for all the tables required by the server. To create and insert the values into these tables run,
+```bash
+poetry run python script/migrate.py
 ```
 
 ## Start the server
