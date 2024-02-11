@@ -1,32 +1,34 @@
-# Autondance Demo Server
+# Autondance Server
 
-This is a demo server used for testing the flutter-api interaction
-and provides a static overview the api.
+This web server serves as the foundational infrastructure for the Autondance project, facilitating essential APIs for image upload and attendance review functionalities. The subsequent flowchart illustrates the systematic process involved in image processing within the project framework.
+
+![Flowchart](flowchart.jpeg)
+
+# Setup
 
 ```bash
 git clone https://github.com/solvedbiscuit71/autondance-demo-server.git
 cd autondance-demo-server
 ```
 
-# Setup
+## Intalling Poetry
 
-We are using poetry as the package manager and build tool install poetry
+We are using poetry as the package manager and build tool.
 
-Linux, macOS, Windows (WSL)
+For Linux, macOS, Windows (WSL)
 ```sh
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-Windows (Powershell)
+For Windows (Powershell)
 ```sh
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
 
-Don't forget to add poetry to your $PATH,
+**NOTE: Don't forget to add poetry to your $PATH,**
 
-
-`$HOME/.local/bin` on Unix.  
-`%APPDATA%\Python\Scripts` on Windows.
+`$HOME/.local/bin` For Linux, macOS, Windows (WSL)  
+`%APPDATA%\Python\Scripts` For Windows
 
 ## Install the dependencies
 
@@ -37,7 +39,7 @@ poetry install
 
 ## Setup env variables
 
-Create a new file `.env` in the root of the project and add the host and port
+Create a new file `.env` in the root of the project and add the host and port. `<...>` indicate a placeholder
 ```
 API_HOST=<ip>
 API_PORT=<port-number>
