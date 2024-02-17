@@ -223,7 +223,8 @@ async def upload_file(file: UploadFile):
 
     return {"message": "success", "imageUri": f"/{path}"}
 
-
+if not os.path.exists('uploads'):
+    os.makedirs('uploads')
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
