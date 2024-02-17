@@ -91,7 +91,7 @@ def check_image_info(image_name: str):
 
     res = conn.execute(query)
     row = res.fetchone()
-    return row[0] > 0
+    return row is not None and row[0] > 0
 
 
 def get_image_info(image_name: str):
@@ -114,7 +114,7 @@ def post_image_info(id: str, present: set[str], absent: set[str]):
         image_id=id, width=1024, height=768, classroom_id=classroom)
     # width, height, classrom_id should be know at upload
     conn.execute(query)
-    conn.commit()
+    # conn.commit()
 
     for seat_id in present:
         query = db.text("INSERT INTO image_seat\
@@ -181,7 +181,7 @@ def fetch_attendance(
         return {"message": "not found"}
 
     if not check_image_info(image_name):
-        predicts = model(f"uploads/{image_name}", show=True)
+        predicts = model(f"uploads/{image_name}")
         xywh = predicts[0].boxes.xywh.numpy()
 
         found = set()

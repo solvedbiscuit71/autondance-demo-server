@@ -67,7 +67,7 @@ meta.create_all(engine)
 
 classrooms_json = json.load(open("scripts/classrooms.json"))
 students_json = json.load(open("scripts/students.json"))
-seats_json = json.load(open("scripts/seats.json"))
+seats_json = json.load(open("scripts/new_seats.json"))
 student_seat_json = json.load(open("scripts/student_seats.json"))
 
 conn = engine.connect()
