@@ -50,7 +50,7 @@ DATABASE_URL=mysql+mysqlconnector://<user>:<password>@<host>/<database>
 
 In this project, There is a predefined dataset for all the tables required by the server. To create and insert the values into these tables run,
 ```bash
-poetry run python script/migrate.py
+poetry run python scripts/migrate.py
 ```
 
 ## Start the server
