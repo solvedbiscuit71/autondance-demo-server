@@ -6,15 +6,19 @@ authors = ["Praveen Perumal <ppraveen98841@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.104.0"
+python=">=3.12"
+fastapi = "^0.109.2"
+python-dotenv = "^1.0.1"
+python-multipart = "^0.0.9"
+opencv-python = "^4.9.0.80"
+ultralytics = "^8.1.14"
 aiofiles = "^23.2.1"
-python-dotenv = "^1.0.0"
-uvicorn = "^0.23.2"
-python-multipart = "^0.0.6"
-ultralytics = "^8.0.200"
-opencv-python = "^4.8.1.78"
-
+uvicorn = "^0.27.1"
+sqlalchemy = "^2.0.27"
+mysql = "^0.0.3"
+# NOTE: mysql requires "mysqlclient" which executes `pkg-config --exists mysqlclient`
+# so verify that your system as pkg-config command
+mysql-connector-python = "^8.3.0"
 
 [build-system]
 requires = ["poetry-core"]
