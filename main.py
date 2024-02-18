@@ -207,6 +207,23 @@ def fetch_attendance(
         "imageUri": f"/uploads/{image_name}"
     }
 
+@app.patch("/attendance")
+def update_attendance(
+        year: int,
+        month: str,
+        date: int,
+        time: str,
+        student_id: str,
+        is_present: bool):
+    image_name = get_image_name(year, month, date, time)
+    conn = get_connection()
+    query = db.text("update image_seat set present=:present\
+                     where seat_id=(select seat_id from student_seat where student_id = :student_id)\
+                     and image_id=:image_id; ").bindparams(
+        present=is_present, student_id=student_id, image_id=image_name)
+    conn.execute(query)
+    conn.commit()
+    pass
 
 @app.post("/upload")
 async def upload_file(file: UploadFile):
